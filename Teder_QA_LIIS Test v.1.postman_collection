@@ -1,0 +1,4882 @@
+{
+	"info": {
+		"_postman_id": "acf18ec3-96b2-4682-89bb-9794fe3c001e",
+		"name": "LIIS Test v.1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17106594"
+	},
+	"item": [
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "https://hr.recruit.liis.su//",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su//",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get posts 200 test_old_ver",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// const age2 = 18;\r",
+									"// const age3 = 60; \r",
+									"\r",
+									"// const checkAge = function (...age) {\r",
+									"//     age.forEach  (el => {\r",
+									"//         if (el && !isNaN(el)) {\r",
+									"//             if ( el < age2) {\r",
+									"//                 console.log(\"you\" + el + \"it\");\r",
+									"//             } else if (el >= age && el < age3) {\r",
+									"//                 console.log(\"welcome !\");\r",
+									"//             } else if (el > age3){\r",
+									"//                 console.log(\"keep calm\");\r",
+									"//             } else {\r",
+									"//                 console.log(\"tech\");\r",
+									"//             }\r",
+									"//         } else console.log (\"not an\") \r",
+									"//     })\r",
+									"// }\r",
+									"\r",
+									"// checkAge(17, 18, 60, 61,'', '20', 'fff', '0')\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"// status code OK\r",
+									"pm.test(\"Status code name has OK\",  function () {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have array\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"array\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									"\r",
+									"const keyisInJson = ['content','id','publication_datetime','title','author']\r",
+									"\r",
+									"jsonData.forEach(elemnt =>\r",
+									"keyisInJson.forEach(key => {\r",
+									"    pm.test(`Response has ${key}`, () => {\r",
+									"        pm.expect(elemnt).to.have.property(key)\r",
+									"    })\r",
+									"}));\r",
+									"\r",
+									"jsonData.forEach(elemnt => {\r",
+									"    pm.test(`elemnt.content is string`, () => {\r",
+									"        pm.expect(elemnt.content).to.be.a('string');\r",
+									"    })\r",
+									"});\r",
+									"\r",
+									"jsonData.forEach(elemnt => {\r",
+									"    pm.test(`elemnt.id is number`, () => {\r",
+									"        pm.expect(elemnt.id).to.be.a('number');\r",
+									"    })\r",
+									"});\r",
+									"\r",
+									"jsonData.forEach(elemnt => {\r",
+									"    pm.test(`elemnt.publication_datetime is string`, () => {\r",
+									"        pm.expect(elemnt.publication_datetime).to.be.a('string');\r",
+									"    })\r",
+									"});\r",
+									"\r",
+									"jsonData.forEach(elemnt => {\r",
+									"    pm.test(`(not work. New_elemnt.title is string`, () => {\r",
+									"        pm.expect(elemnt.title).to.be.a('string');\r",
+									"    })\r",
+									"});\r",
+									"\r",
+									"jsonData.forEach(elemnt => {\r",
+									"    pm.test(`elemnt.author is number`, () => {\r",
+									"        pm.expect(elemnt.author).to.be.a('number');\r",
+									"    })\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/ss@mail.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"ss@mail.ru",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get posts 200 test_new_ver",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// const age2 = 18;\r",
+									"// const age3 = 60; \r",
+									"\r",
+									"// const checkAge = function (...age) {\r",
+									"//     age.forEach  (el => {\r",
+									"//         if (el && !isNaN(el)) {\r",
+									"//             if ( el < age2) {\r",
+									"//                 console.log(\"you\" + el + \"it\");\r",
+									"//             } else if (el >= age && el < age3) {\r",
+									"//                 console.log(\"welcome !\");\r",
+									"//             } else if (el > age3){\r",
+									"//                 console.log(\"keep calm\");\r",
+									"//             } else {\r",
+									"//                 console.log(\"tech\");\r",
+									"//             }\r",
+									"//         } else console.log (\"not an\") \r",
+									"//     })\r",
+									"// }\r",
+									"\r",
+									"// checkAge(17, 18, 60, 61,'', '20', 'fff', '0')\r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"// status code OK\r",
+									"pm.test(\"Status code name has OK\",  function () {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have array\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"array\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									"\r",
+									"const keyisInJson = ['content','id','publication_datetime','name','author']\r",
+									"\r",
+									"jsonData.forEach(elemnt =>\r",
+									"keyisInJson.forEach(key => {\r",
+									"    pm.test(`Response has ${key}`, () => {\r",
+									"        pm.expect(elemnt).to.have.property(key)\r",
+									"    })\r",
+									"}));\r",
+									"\r",
+									"jsonData.forEach(elemnt => {\r",
+									"    pm.test(`elemnt.content is string`, () => {\r",
+									"        pm.expect(elemnt.content).to.be.a('string');\r",
+									"    })\r",
+									"});\r",
+									"\r",
+									"jsonData.forEach(elemnt => {\r",
+									"    pm.test(`elemnt.id is number`, () => {\r",
+									"        pm.expect(elemnt.id).to.be.a('number');\r",
+									"    })\r",
+									"});\r",
+									"\r",
+									"jsonData.forEach(elemnt => {\r",
+									"    pm.test(`elemnt.publication_datetime is string`, () => {\r",
+									"        pm.expect(elemnt.publication_datetime).to.be.a('string');\r",
+									"    })\r",
+									"});\r",
+									"\r",
+									"jsonData.forEach(elemnt => {\r",
+									"    pm.test(`(not work. New_elemnt.name is string`, () => {\r",
+									"        pm.expect(elemnt.name).to.be.a('string');\r",
+									"    })\r",
+									"});\r",
+									"\r",
+									"jsonData.forEach(elemnt => {\r",
+									"    pm.test(`elemnt.author is number`, () => {\r",
+									"        pm.expect(elemnt.author).to.be.a('number');\r",
+									"    })\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/ss@mail.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"ss@mail.ru",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get posts null json",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// status code 200\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"// status code OK\r",
+									"pm.test(\"Status code name has OK\",  function () {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(`not Empty Array`, function(){\r",
+									"pm.expect(jsonData).to.be.an(`array`).that.is.not.empty;\r",
+									"});\r",
+									"\r",
+									"pm.test(`Empty Array`, function(){\r",
+									"pm.expect(jsonData).to.be.an(`array`).that.is.empty;\r",
+									"});\r",
+									"\r",
+									"// jsonData.null\r",
+									"pm.test(\"To Check if Value is Null\", function () {\r",
+									"    pm.expect(jsonData).eql([]);\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9000@mail.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9000@mail.ru",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post post 201",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// кейсы на граничные значения текста, пустое поле\r",
+									"\r",
+									"\r",
+									"// status code 201\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has CREATED\",  function () {\r",
+									"  pm.response.to.have.status(\"CREATED\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Без требований непонятно какиой тип данных должен быть integer or number, логичнее integer\r",
+									"let schema_old = \r",
+									" {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"content\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"id\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"publication_datetime\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"title\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"author\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"content\",\r",
+									"    \"id\",\r",
+									"    \"publication_datetime\",\r",
+									"    \"title\",\r",
+									"    \"author\"\r",
+									"  ]\r",
+									"}\r",
+									"let schema_new = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"content\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"author\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"publication_datetime\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"id\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"name\",\r",
+									"    \"content\",\r",
+									"    \"author\",\r",
+									"    \"publication_datetime\",\r",
+									"    \"id\"\r",
+									"  ]\r",
+									"}\r",
+									"\r",
+									"// Parsing request\r",
+									"var req = JSON.parse(request.data);\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test('Schema_old is valid', function() {\r",
+									"    var correct=tv4.validate(jsonData, schema_old, true, true)\r",
+									"    pm.expect(correct).to.be.true\r",
+									"});\r",
+									"\r",
+									"pm.test('Schema_new is valid', function() {\r",
+									"    var correct=tv4.validate(jsonData, schema, true, true)\r",
+									"    pm.expect(correct).to.be.true\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"the response object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.content} = request ${req.content}`, function() {\r",
+									"    pm.expect(jsonData.content).to.eql(req.content)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"не работает. jsonData.name = req.name\", function() {\r",
+									"    pm.expect(jsonData.name).to.eql(req.name)\r",
+									"}); \r",
+									"\r",
+									"const keyisInJson = ['content','id','publication_datetime','name','author']\r",
+									"\r",
+									"keyisInJson.forEach(key => {\r",
+									"    pm.test(`Response has ${key}`, () => {\r",
+									"        pm.expect(jsonData).to.have.property(key)\r",
+									"    })\r",
+									"});\r",
+									"\r",
+									"// Без требований непонятно какиой тип данных должен быть integer or number, логичнее integer\r",
+									"pm.test(\"The jsonData.id = Number\", () => {\r",
+									"    pm.expect(jsonData.id).to.be.a('number');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The jsonData.author = integer\", () => {\r",
+									"    pm.expect(jsonData.author).to.be.a('integer');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Не работает. The response name = string\", () => {\r",
+									"    pm.expect(jsonData.name).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response content = string\", () => {\r",
+									"    pm.expect(jsonData.content).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"The response publication_datetime = string\", () => {\r",
+									"    pm.expect(jsonData.publication_datetime).to.be.a('string');\r",
+									"});\r",
+									"\r",
+									"pm.environment.set(\"id_post\", pm.response.json().id);\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{name}}\",\r\n    \"content\": \"{{content_v2}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post post 201 auto test polya",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// кейсы на проверку полей, без точных требований\r",
+									"\r",
+									"// title\r",
+									"// min 3 символа fff\r",
+									"// max 255 символа fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\r",
+									"//  fffff\r",
+									"// true, false \r",
+									"// ___fff\r",
+									"// ff  ff\r",
+									"// ffff___\r",
+									"// !@#$%^&*()_+{}[]'\\/.`,<>~\"\r",
+									"// null\r",
+									"// infinity\r",
+									"// <script>alert('name')</script>\r",
+									"// <b>name</b>\r",
+									"// AfFe\r",
+									"// 😂\r",
+									"\r",
+									"\r",
+									"\r",
+									"//content\r",
+									"// min 1 символа f\r",
+									"// max 180 символа fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\r",
+									"//  fffff\r",
+									"// true, false \r",
+									"// ___fff\r",
+									"// ff  ff\r",
+									"// ffff___\r",
+									"// !@#$%^&*()_+{}[]'\\/.`,<>~\"\r",
+									"// null\r",
+									"// infinity\r",
+									"// <script>alert('name')</script>\r",
+									"// <b>name</b>\r",
+									"// AfFe\r",
+									"// 😂\r",
+									"\r",
+									"const content = pm.iterationData.get('content');\r",
+									"const title = pm.iterationData.get('title'); // old\r",
+									"const name = pm.iterationData.get('name'); // new\r",
+									"\r",
+									"function contentValidation(value) {\r",
+									"    return value && value.lenght > 3 && value.lenght <= 180 && value.trim() == value\r",
+									"}\r",
+									"\r",
+									"function titleValidation(value) {\r",
+									"    return value && value.lenght > 3 && value.lenght <= 80 && value.trim() == value\r",
+									"}\r",
+									"\r",
+									"function  validate(content,title) {\r",
+									"    return contentValidation(content) && nameValidation(title)\r",
+									"}\r",
+									"if (validate(content,title)) {\r",
+									"\r",
+									"    pm.test(`ne 201 code with content == ${content} and title == ${title} `, () => {\r",
+									"        pm.response.to.not.have.status(201);\r",
+									"    })\r",
+									"} else {\r",
+									"    pm.test(`201 code with content == ${content} and title == ${title} `, () => {\r",
+									"        pm.response.to.have.status(201);\r",
+									"    })\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/ss@mail.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"ss@mail.ru",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post post 422 polya max+1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 422\", function () {\r",
+									"    pm.response.to.have.status(422)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has UNPROCESSABLE ENTITY\",  function () {\r",
+									"  pm.response.to.have.status(\"UNPROCESSABLE ENTITY\");\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(`response ${jsonData.content} = Longer than maximum length 180. `, function() {\r",
+									"    pm.expect(jsonData.content[0]).to.eql(\"Longer than maximum length 180.\")\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.title} = Longer than maximum length 80. `, function() {\r",
+									"    pm.expect(jsonData.title[0]).to.eql(\"Longer than maximum length 80.\")\r",
+									"});\r",
+									"\r",
+									"pm.test(`не работает. jsonData.name = Longer than maximum length 80.`, function() {\r",
+									"    pm.expect(jsonData.name[0]).to.eql(\"Longer than maximum length 80.\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\",\r\n    \"title\": \"fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post post 201 polya отладчик",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"// let jsonData = pm.response.json(); \r",
+									"\r",
+									"// кейсы на проверку полей, без точных требований\r",
+									"\r",
+									"// title\r",
+									"// min 3 символа fff\r",
+									"// max 180 символа fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\r",
+									"//  fffff\r",
+									"// true, false \r",
+									"// ___fff\r",
+									"// ff  ff\r",
+									"// ffff___\r",
+									"// !@#$%^&*()_+{}[]'\\/.`,<>~\"\r",
+									"// null\r",
+									"// infinity\r",
+									"// <script>alert('name')</script>\r",
+									"// <b>name</b>\r",
+									"// AfFe\r",
+									"// 😂\r",
+									"\r",
+									"\r",
+									"\r",
+									"//content\r",
+									"// min 1 символа f\r",
+									"// max 2048 символа fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\r",
+									"//  fffff\r",
+									"// true, false \r",
+									"// ___fff\r",
+									"// ff  ff\r",
+									"// ffff___\r",
+									"// !@#$%^&*()_+{}[]'\\/.`,<>~\"\r",
+									"// null\r",
+									"// infinity\r",
+									"// <script>alert('name')</script>\r",
+									"// <b>name</b>\r",
+									"// AfFe\r",
+									"// 😂\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"content\": \"fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\",\r\n    \"title\": \"fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post post 400",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// кейсы на граничные значения текста, пустое поле\r",
+									"\r",
+									"\r",
+									"// status code 201\r",
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has BAD REQUEST\",  function () {\r",
+									"  pm.response.to.have.status(\"BAD REQUEST\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(`Response message ${jsonData.message} = The browser (or proxy) sent a request that this server could not understand. `, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"The browser (or proxy) sent a request that this server could not understand.\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": {{name}},\r\n    \"content\": {{content_v2}}\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post post 401",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Parsing request\r",
+									"var req = JSON.parse(request.data);\r",
+									"\r",
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401)\r",
+									"});\r",
+									"pm.test(\"Status code name has string\",  function () {\r",
+									"  pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+									"});\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test data type of the response\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(`Response type ${jsonData.type} = \"error\"`, function() {\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\")\r",
+									"});\r",
+									"\r",
+									"pm.test(`Response message ${jsonData.message} = \"Could not verify your login!\"`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Could not verify your login!\")\r",
+									"}); \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{title}}\",\r\n    \"content\": \"{{content_1}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post (puts) post 405",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Parsing request\r",
+									"var req = JSON.parse(request.data);\r",
+									"\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405)\r",
+									"});\r",
+									"pm.test(\"Status code name has METHOD NOT ALLOWED\",  function () {\r",
+									"  pm.response.to.have.status(\"METHOD NOT ALLOWED\");\r",
+									"});\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(`Response message ${jsonData.message} = \"The method is not allowed for the requested URL.\"`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"The method is not allowed for the requested URL.\")\r",
+									"}); \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{title}}\",\r\n    \"content\": \"{{content_1}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/posts",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get post 200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"// status code OK\r",
+									"pm.test(\"Status code name has OK\",  function () {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 300ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Test data type of the response object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"const keyisInJson = ['content', 'id','publication_datetime','title','author']\r",
+									"\r",
+									"keyisInJson.forEach(key => {\r",
+									"    pm.test(`Response has ${key}`, () => {\r",
+									"        pm.expect(jsonData).to.have.property(key)\r",
+									"    })\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/{{id_post}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"{{id_post}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get post 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404)\r",
+									"});\r",
+									"pm.test(\"Status code name has NOT FOUND\",  function () {\r",
+									"  pm.response.to.have.status(\"NOT FOUND\");\r",
+									"});\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"response object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.type} = \"error\"`, function() {\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\")\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.message} = \"Post not found\"`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Post not found\")\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPOMNITb1",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/155",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"155"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get (post) post 405",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"pm.globals.get(\"variable_key\");\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has METHOD NOT ALLOWED\",  function () {\r",
+									"  pm.response.to.have.status(\"METHOD NOT ALLOWED\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.message} = \"The method is not allowed for the requested URL\"`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"The method is not allowed for the requested URL.\")\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/155",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"155"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put post 401",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has UNAUTHORIZED\",  function () {\r",
+									"  pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.message} = \"Could not verify your login!\"`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Could not verify your login!\")\r",
+									"}); \r",
+									"\r",
+									"pm.test(`response ${jsonData.type} = \"error\"`, function() {\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/{{id_post}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"{{id_post}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put post 403",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has FORBIDDEN\",  function () {\r",
+									"  pm.response.to.have.status(\"FORBIDDEN\");\r",
+									"});\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.message} = \"Forbidden\"`, function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Forbidden\");\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.type} = \"error\"`, function () {\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{title_put}}\",\r\n    \"content\": \"{{contetn_2_put}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/{{id_post}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"{{id_post}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put post 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// status code 201\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has NOT FOUND\",  function () {\r",
+									"  pm.response.to.have.status(\"NOT FOUND\");\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response check Post not found\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Post not found\")\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response check error\", function () {\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{title_put}}\",\r\n    \"content\": \"{{contetn_2_put}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/1",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put (post) post 405",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// status code 201\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has METHOD NOT ALLOWED\",  function () {\r",
+									"  pm.response.to.have.status(\"METHOD NOT ALLOWED\");\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response Check message status\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"The method is not allowed for the requested URL.\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{title_put}}\",\r\n    \"content\": \"{{contetn_2_put}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/{{id_post}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"{{id_post}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put post 200",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// status code 201\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has OK\",  function () {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response Check message status\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"updated\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response Check type status\", function () {\r",
+									"    pm.expect(jsonData.type).to.eql(\"success\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{title_put}}\",\r\n    \"content\": \"{{contetn_2_put}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/{{id_post}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"{{id_post}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put post 200 null polya",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// status code 201\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has OK\",  function () {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response Check message status\", function () {\r",
+									"    pm.expect(jsonData.message).to.eql(\"updated\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response Check type status\", function () {\r",
+									"    pm.expect(jsonData.type).to.eql(\"success\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/{{id_post}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"{{id_post}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put post 200 bez polya",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// status code 201\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has OK\",  function () {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/{{id_post}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"{{id_post}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete post 401 not authorization",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401)\r",
+									"});\r",
+									"pm.test(\"Status code name has UNAUTHORIZED\",  function () {\r",
+									"  pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+									"});\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(`response ${jsonData.message} = \"Post not found\"`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Could not verify your login!\")\r",
+									"}); \r",
+									"\r",
+									"pm.test(`response ${jsonData.type} = \"error\"`, function() {\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/{{id_post}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"{{id_post}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete post 403",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 403\", function () {\r",
+									"    pm.response.to.have.status(403)\r",
+									"});\r",
+									"pm.test(\"Status code name has FORBIDDEN\",  function () {\r",
+									"  pm.response.to.have.status(\"FORBIDDEN\");\r",
+									"});\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/{{id_post}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"{{id_post}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete post 204",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204)\r",
+									"});\r",
+									"pm.test(\"Status code name has NO CONTENT\",  function () {\r",
+									"  pm.response.to.have.status(\"NO CONTENT\");\r",
+									"});\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(500);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/{{id_post}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"{{id_post}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete post 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404)\r",
+									"});\r",
+									"pm.test(\"Status code name has NOT FOUND\",  function () {\r",
+									"  pm.response.to.have.status(\"NOT FOUND\");\r",
+									"});\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"response object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.type} = \"error\"`, function() {\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\")\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.message} = \"Post not found\"`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Post not found\")\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/{{id_post}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"{{id_post}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete post 405",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405)\r",
+									"});\r",
+									"pm.test(\"Status code name has METHOD NOT ALLOWED\",  function () {\r",
+									"  pm.response.to.have.status(\"METHOD NOT ALLOWED\");\r",
+									"});\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 400ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"response object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"pm.test(\"response The method is not allowed for the requested URL.\", function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"The method is not allowed for the requested URL.\")\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/post/2003",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"post",
+								"2003"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments",
+			"item": [
+				{
+					"name": "Get comments auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"// status code OK\r",
+									"pm.test(\"Status code name has OK\",  function () {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(200);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have array\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"array\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									"pm.environment.set(\"id_post\", pm.response.json().post);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get comments no auth",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"// status code OK\r",
+									"pm.test(\"Status code name has OK\",  function () {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(100);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have array\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"array\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									"pm.environment.set(\"count_of_comments\", pm.response.json().length);\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post comments 401",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401)\r",
+									"});\r",
+									"\r",
+									"// status code CREATED\r",
+									"pm.test(\"Status code name has UNAUTHORIZED\",  function () {\r",
+									"  pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"yourcommenttitle33\",\r\n    \"content\": \"yourcommenttext\",\r\n    \"post\": 2552\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post comments 422",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 422\", function () {\r",
+									"    pm.response.to.have.status(422)\r",
+									"});\r",
+									"\r",
+									"// status code UNPROCESSABLE ENTITY\r",
+									"pm.test(\"Status code name has UNPROCESSABLE ENTITY\",  function () {\r",
+									"  pm.response.to.have.status(\"UNPROCESSABLE ENTITY\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post comments 422 not null",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 422\", function () {\r",
+									"    pm.response.to.have.status(422)\r",
+									"});\r",
+									"\r",
+									"// status code UNPROCESSABLE ENTITY\r",
+									"pm.test(\"Status code name has UNPROCESSABLE ENTITY\",  function () {\r",
+									"  pm.response.to.have.status(\"UNPROCESSABLE ENTITY\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(`response response ${jsonData.content} = Field may not be null.`, function() {\r",
+									"    pm.expect(jsonData.content[0]).to.eql(\"Field may not be null.\")\r",
+									"})\r",
+									"\r",
+									"pm.test(`response response ${jsonData.post} = Field may not be null.`, function() {\r",
+									"    pm.expect(jsonData.post[0]).to.eql(\"Field may not be null.\")\r",
+									"})\r",
+									"\r",
+									"pm.test(`response response ${jsonData.title} = Field may not be null.`, function() {\r",
+									"    pm.expect(jsonData.title[0]).to.eql(\"Field may not be null.\")\r",
+									"})\r",
+									"\r",
+									"pm.test(`не работает т.к.text api v_2 response response ${jsonData.text} = Field may not be null.`, function() {\r",
+									"    pm.expect(jsonData.text[0]).to.eql(\"Field may not be null.\")\r",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": null,\r\n    \"content\": null,\r\n    \"post\": null\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder90000@mail.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder90000@mail.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post comments 422 required field",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 422\", function () {\r",
+									"    pm.response.to.have.status(422)\r",
+									"});\r",
+									"\r",
+									"// status code UNPROCESSABLE ENTITY\r",
+									"pm.test(\"Status code name has UNPROCESSABLE ENTITY\",  function () {\r",
+									"  pm.response.to.have.status(\"UNPROCESSABLE ENTITY\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(`response response ${jsonData.content} = Missing data for required field.`, function() {\r",
+									"    pm.expect(jsonData.post[0]).to.eql(\"Missing data for required field.\")\r",
+									"})\r",
+									"\r",
+									"pm.test(`response response ${jsonData.post} = Missing data for required field..`, function() {\r",
+									"    pm.expect(jsonData.post[0]).to.eql(\"Missing data for required field.\")\r",
+									"})\r",
+									"\r",
+									"pm.test(`response response ${jsonData.title} = Missing data for required field.`, function() {\r",
+									"    pm.expect(jsonData.post[0]).to.eql(\"Missing data for required field.\")\r",
+									"})\r",
+									"pm.test(`response response ${jsonData.test} = Unknown field.`, function() {\r",
+									"    pm.expect(jsonData.test[0]).to.eql(\"Unknown field.\")\r",
+									"})\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"test\": 0\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder90000@mail.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder90000@mail.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "post(put) comments 405",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405)\r",
+									"});\r",
+									"\r",
+									"// status code OK\r",
+									"pm.test(\"Status code name has METHOD NOT ALLOWED\",  function () {\r",
+									"  pm.response.to.have.status(\"METHOD NOT ALLOWED\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(300);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									"pm.test(`response ${jsonData.message} = \"The method is not allowed for the requested URL.`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"The method is not allowed for the requested URL.\")\r",
+									"}); \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post comments 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404)\r",
+									"});\r",
+									"\r",
+									"// status code NOT FOUND\r",
+									"pm.test(\"Status code name has NOT FOUND\",  function () {\r",
+									"  pm.response.to.have.status(\"NOT FOUND\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.message} = \"Post not found`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Post not found\")\r",
+									"}); \r",
+									"pm.test(`response ${jsonData.type} = \"error\"`, function() {\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\")\r",
+									"}); \r",
+									"pm.test(`response ${jsonData.message} = \"Post not found`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Post not found\")\r",
+									"}); \r",
+									"pm.test(`response ${jsonData.type} = \"error`, function() {\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\")\r",
+									"}); \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"yourcommenttitle33\",\r\n    \"content\": \"yourcommenttext\",\r\n    \"post\": 389\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post comments 201",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201)\r",
+									"});\r",
+									"\r",
+									"// status code CREATED\r",
+									"\r",
+									"pm.test(\"Status code name has CREATED\",  function () {\r",
+									"  pm.response.to.have.status(\"CREATED\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Parsing request\r",
+									"var req = JSON.parse(request.data);\r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.text} = \"req.text (не работает)`, function() {\r",
+									"    pm.expect(jsonData.text).to.eql(req.text)\r",
+									"}); \r",
+									"\r",
+									"pm.test(`response ${jsonData.title} = \"req.titte\"`, function() {\r",
+									"    pm.expect(jsonData.title).to.eql(req.title)\r",
+									"}); \r",
+									"\r",
+									"pm.test(`response ${jsonData.content} = \"req.cocntetn`, function() {\r",
+									"    pm.expect(jsonData.content).to.eql(req.content)\r",
+									"}); \r",
+									"pm.environment.set(\"id_post_comment\", pm.response.json().id);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"yourcommenttitle33\",\r\n    \"content\": \"yourcommenttext\",\r\n    \"post\": 2552\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post comments 201 auto test polya",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// кейсы на проверку полей, без точных требований\r",
+									"\r",
+									"// title\r",
+									"// min 3 символа fff\r",
+									"// max 255 символа fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\r",
+									"//  fffff\r",
+									"// true, false \r",
+									"// ___fff\r",
+									"// ff  ff\r",
+									"// ffff___\r",
+									"// !@#$%^&*()_+{}[]'\\/.`,<>~\"\r",
+									"// null\r",
+									"// infinity\r",
+									"// <script>alert('name')</script>\r",
+									"// <b>name</b>\r",
+									"// AfFe\r",
+									"// 😂\r",
+									"\r",
+									"\r",
+									"\r",
+									"//content\r",
+									"// min 1 символа f\r",
+									"// max 180 символа fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\r",
+									"//  fffff\r",
+									"// true, false \r",
+									"// ___fff\r",
+									"// ff  ff\r",
+									"// ffff___\r",
+									"// !@#$%^&*()_+{}[]'\\/.`,<>~\"\r",
+									"// null\r",
+									"// infinity\r",
+									"// <script>alert('name')</script>\r",
+									"// <b>name</b>\r",
+									"// AfFe\r",
+									"// 😂\r",
+									"\r",
+									"const content = pm.iterationData.get('content');\r",
+									"const title = pm.iterationData.get('title');\r",
+									"const post = pm.iterationData.get('post');\r",
+									"const text = pm.iterationData.get('text');\r",
+									"\r",
+									"//////////////////////////////// old\r",
+									"function contentValidation(value) {\r",
+									"    return value && value.lenght > 1 && value.lenght <= 180 && value.trim() == value\r",
+									"}\r",
+									"\r",
+									"function titleValidation(value) {\r",
+									"    return value && value.lenght > 1 && value.lenght < 80 && value.trim() == value\r",
+									"}\r",
+									"\r",
+									"function postValidation(value) {\r",
+									"    return value && value.lenght > 1 && value.lenght < 80 && value.trim() == value\r",
+									"}\r",
+									"function  validate(content,title,post) {\r",
+									"    return contentValidation(content) && nameValidation(title) && nameValidation(post)\r",
+									"}\r",
+									"if (validate(content,title,post)) {\r",
+									"\r",
+									"    pm.test(`ne 201 code with content ==  `, () => {\r",
+									"        pm.response.to.not.have.status(201);\r",
+									"    })\r",
+									"} else {\r",
+									"    pm.test(`201 code with content ==  `, () => {\r",
+									"        pm.response.to.have.status(201);\r",
+									"    })\r",
+									"}\r",
+									"\r",
+									"//////////////////////////////// new\r",
+									"\r",
+									"function contentValidation(value) {\r",
+									"    return value && value.lenght > 1 && value.lenght <= 180 && value.trim() == value\r",
+									"}\r",
+									"\r",
+									"function textValidation(value) {\r",
+									"    return value && value.lenght > 1 && value.lenght < 80 && value.trim() == value\r",
+									"}\r",
+									"\r",
+									"function postValidation(value) {\r",
+									"    return value && value.lenght > 1 && value.lenght < 80 && value.trim() == value\r",
+									"}\r",
+									"function  validate(content,text,post) {\r",
+									"    return contentValidation(content) && nameValidation(text) && nameValidation(post)\r",
+									"}\r",
+									"if (validate(content,text,post)) {\r",
+									"\r",
+									"    pm.test(`ne 201 code with content ==  `, () => {\r",
+									"        pm.response.to.not.have.status(201);\r",
+									"    })\r",
+									"} else {\r",
+									"    pm.test(`201 code with content ==  `, () => {\r",
+									"        pm.response.to.have.status(201);\r",
+									"    })\r",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"{{title}}\",\r\n    \"content\": \"{{content}}\",\r\n    \"post\": {{post}}\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Post comments 422 max +1",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 422\", function () {\r",
+									"    pm.response.to.have.status(422)\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Status code name has UNPROCESSABLE ENTITY\",  function () {\r",
+									"  pm.response.to.have.status(\"UNPROCESSABLE ENTITY\");\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(`response ${jsonData.content} = Longer than maximum length 80. `, function() {\r",
+									"    pm.expect(jsonData.content[0]).to.eql(\"Longer than maximum length 80.\")\r",
+									"});\r",
+									"\r",
+									"pm.test(`response ${jsonData.title} = Longer than maximum length 80. `, function() {\r",
+									"    pm.expect(jsonData.title[0]).to.eql(\"Longer than maximum length 80.\")\r",
+									"});\r",
+									"\r",
+									"pm.test(`Не работает. jsonData.name = Longer than maximum length 80.`, function() {\r",
+									"    pm.expect(jsonData.name[0]).to.eql(\"Longer than maximum length 80.\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\",\r\n    \"content\": \"ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff\",\r\n    \"post\": 2552\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comments",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"// status code OK\r",
+									"pm.test(\"Status code name has OK\",  function () {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comment/{{id_post_comment}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comment",
+								"{{id_post_comment}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200)\r",
+									"});\r",
+									"\r",
+									"// status code OK\r",
+									"pm.test(\"Status code name has OK\",  function () {\r",
+									"  pm.response.to.have.status(\"OK\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									"// Parsing request\r",
+									"var req = JSON.parse(request.data);\r",
+									"\r",
+									"pm.test(`response ${jsonData.message} =  updated`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"updated\")\r",
+									"}); \r",
+									"\r",
+									"pm.test(`response ${jsonData.type} =  success`, function() {\r",
+									"    pm.expect(jsonData.type).to.eql(\"success\")\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"yourdsadsadsafname\",\r\n    \"content\": \"yournewpfasdsadasdsadsadontent\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comment/{{id_post_comment}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comment",
+								"{{id_post_comment}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Put (post) comment 405",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"\r",
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405)\r",
+									"});\r",
+									"\r",
+									"// status code METHOD NOT ALLOWED\r",
+									"pm.test(\"Status code name has METHOD NOT ALLOWED\",  function () {\r",
+									"  pm.response.to.have.status(\"METHOD NOT ALLOWED\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"// Есть массив\r",
+									"pm.test(\"response have object\", () => {\r",
+									"  pm.expect(jsonData).to.be.an(\"object\");\r",
+									"});\r",
+									"\r",
+									"// jsonData.not.null\r",
+									"pm.test(\"jsonData.not.null\", () => {\r",
+									"    pm.expect(jsonData).to.be.not.null;\r",
+									"});\r",
+									"// Parsing request\r",
+									"var req = JSON.parse(request.data);\r",
+									"\r",
+									"pm.test(`response ${jsonData.message} =  updated`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"The method is not allowed for the requested URL.\")\r",
+									"}); \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"yourdsadsadsafname\",\r\n    \"content\": \"yournewpfasdsadasdsadsadontent\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comment/{{id_post_comment}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comment",
+								"{{id_post_comment}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete comment",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 204\", function () {\r",
+									"    pm.response.to.have.status(204)\r",
+									"});\r",
+									"\r",
+									"// status code NO CONTENT\r",
+									"pm.test(\"Status code name has NO CONTENT\",  function () {\r",
+									"  pm.response.to.have.status(\"NO CONTENT\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comment/{{id_post_comment}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comment",
+								"{{id_post_comment}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete comment 404",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"    pm.response.to.have.status(404)\r",
+									"});\r",
+									"\r",
+									"// status code NOT FOUND\r",
+									"pm.test(\"Status code name has NOT FOUND\",  function () {\r",
+									"  pm.response.to.have.status(\"NOT FOUND\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(`response ${jsonData.message} = \"Comment not found\"\"`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Comment not found\")\r",
+									"}); \r",
+									"\r",
+									"pm.test(`response ${jsonData.type} = \"error\"`, function() {\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comment/{{id_post_comment}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comment",
+								"{{id_post_comment}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete comment 401",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 401\", function () {\r",
+									"    pm.response.to.have.status(401)\r",
+									"});\r",
+									"\r",
+									"// status code UNAUTHORIZED\r",
+									"pm.test(\"Status code name has UNAUTHORIZED\",  function () {\r",
+									"  pm.response.to.have.status(\"UNAUTHORIZED\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(`response ${jsonData.message} = \"Could not verify your login!\"`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"Could not verify your login!\")\r",
+									"}); \r",
+									"\r",
+									"pm.test(`response ${jsonData.type} = \"error\"`, function() {\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\")\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comment/{{id_post_comment}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comment",
+								"{{id_post_comment}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete (post) comment 405",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 405\", function () {\r",
+									"    pm.response.to.have.status(405)\r",
+									"});\r",
+									"\r",
+									"// status code NOT FOUND\r",
+									"pm.test(\"Status code name has METHOD NOT ALLOWED\",  function () {\r",
+									"  pm.response.to.have.status(\"METHOD NOT ALLOWED\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"\r",
+									"\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(`response ${jsonData.message} = \"The method is not allowed for the requested URL.\"`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"The method is not allowed for the requested URL.\")\r",
+									"}); \r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "ZOPыыOMNITыb151",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "123",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/comment/{{id_post_comment}}",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"comment",
+								"{{id_post_comment}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-in 201",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"let schema_old = \r",
+									"{\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"email\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"id\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"password\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"username\": {\r",
+									"      \"type\": \"string\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"email\",\r",
+									"    \"id\",\r",
+									"    \"password\",\r",
+									"    \"username\"\r",
+									"  ]\r",
+									"}\r",
+									"\r",
+									"let schema_new = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"password\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"first_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"middle_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"email\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"last_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"username\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"id\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"is_admin\": {\r",
+									"      \"type\": \"boolean\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"password\",\r",
+									"    \"email\",\r",
+									"    \"username\",\r",
+									"    \"id\",\r",
+									"    \"is_admin\"\r",
+									"  ]\r",
+									"}\r",
+									"\r",
+									"pm.test('Schema_old is valid', function() {\r",
+									"    var correct=tv4.validate(jsonData, schema_old, true, true)\r",
+									"    pm.expect(correct).to.be.true\r",
+									"});\r",
+									"\r",
+									"pm.test('Schema_new is valid', function() {\r",
+									"    var correct=tv4.validate(jsonData, schema_new, true, true)\r",
+									"    pm.expect(correct).to.be.true\r",
+									"});\r",
+									"\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"{{$randomCity}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/sign-in",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-in auto test polya",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const email = pm.iterationData.get('email');\r",
+									"const username = pm.iterationData.get('username');\r",
+									"const password = pm.iterationData.get('password');\r",
+									"\r",
+									"function emailValidation(value) {\r",
+									"    return value && value.lenght > 1 && value.lenght <= 200 && value.trim() == value\r",
+									"}\r",
+									"function usernameValidation(value) {\r",
+									"    return value && value.lenght > 1 && value.lenght <= 200 && value.trim() == value\r",
+									"}\r",
+									"function passwordValidation(value) {\r",
+									"    return value && value.lenght > 1 && value.lenght <= 200 && value.trim() == value\r",
+									"}\r",
+									"\r",
+									"function  validate(email,username,password) {\r",
+									"    return emailValidation(email) && usernameValidation(username) && passwordValidation(password)\r",
+									"}\r",
+									"if (validate(email,username,password)) {\r",
+									"    pm.test(`ne 201 code with content  `, () => {\r",
+									"        pm.response.to.not.have.status(201);\r",
+									"    })\r",
+									"} else {\r",
+									"    pm.test(`201 code with content  `, () => {\r",
+									"        pm.response.to.have.status(201);\r",
+									"    })\r",
+									"}\r",
+									"///////////////////////\r",
+									"// function first_nameValidation(value) {\r",
+									"//     return value && value.lenght > 1 && value.lenght <= 200 && value.trim() == value\r",
+									"// }\r",
+									"// function middle_nameValidation(value) {\r",
+									"//     return value && value.lenght > 1 && value.lenght <= 200 && value.trim() == value\r",
+									"// }\r",
+									"// function last_nameValidation(value) {\r",
+									"//     return value && value.lenght > 1 && value.lenght <= 200 && value.trim() == value\r",
+									"// }\r",
+									"\r",
+									"// function  validate(email,username,password,first_name,middle_name,last_name) {\r",
+									"//     return emailValidation(email) && usernameValidation(username) && passwordValidation(password) && passwordValidation(first_name) && passwordValidation(middle_name) && passwordValidation(last_name)\r",
+									"// }\r",
+									"// if (validate(email,username,password)) {\r",
+									"//     pm.test(`ne 201 code with content  `, () => {\r",
+									"//         pm.response.to.not.have.status(201);\r",
+									"//     })\r",
+									"// } else {\r",
+									"//     pm.test(`201 code with content  `, () => {\r",
+									"//         pm.response.to.have.status(201);\r",
+									"//     })\r",
+									"// }"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"{{username}}\",\r\n    \"email\": \"{{email}}\",\r\n    \"password\": \"{{password}}\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/sign-in",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-in 409",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 409\", function () {\r",
+									"    pm.response.to.have.status(409)\r",
+									"});\r",
+									"\r",
+									"// status code CONFLICT\r",
+									"pm.test(\"Status code name has CONFLICT\",  function () {\r",
+									"  pm.response.to.have.status(\"CONFLICT\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(`response ${jsonData.message} = \"User with this username or email already exists\"`, function() {\r",
+									"    pm.expect(jsonData.message).to.eql(\"User with this username or email already exists\")\r",
+									"}); \r",
+									"\r",
+									"pm.test(`response ${jsonData.type} = \"error\"`, function() {\r",
+									"    pm.expect(jsonData.type).to.eql(\"error\")\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"ZOPOMNITb1\",\r\n    \"email\": \"ZOPOMNITb@mail.ru1\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/sign-in",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-in 422 required field old polya",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 422\", function () {\r",
+									"    pm.response.to.have.status(422)\r",
+									"});\r",
+									"\r",
+									"// status code UNPROCESSABLE ENTITY\r",
+									"pm.test(\"Status code name has UNPROCESSABLE ENTITY\",  function () {\r",
+									"  pm.response.to.have.status(\"UNPROCESSABLE ENTITY\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test(`response ${jsonData.email} = \"Missing data for required field.\"`, function() {\r",
+									"    pm.expect(jsonData.email[0]).to.eql(\"Missing data for required field.\")\r",
+									"}); \r",
+									"\r",
+									"pm.test(`response ${jsonData.password} = \"Not a valid string.\"`, function() {\r",
+									"    pm.expect(jsonData.password[0]).to.eql(\"Missing data for required field.\")\r",
+									"}); \r",
+									"\r",
+									"pm.test(`response ${jsonData.username} = \"Missing data for required field.\"`, function() {\r",
+									"    pm.expect(jsonData.username[0]).to.eql(\"Missing data for required field.\")\r",
+									"}); "
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/sign-in",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-in 422 Unknown field new polya",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 422\", function () {\r",
+									"    pm.response.to.have.status(422)\r",
+									"});\r",
+									"\r",
+									"// status code UNPROCESSABLE ENTITY\r",
+									"pm.test(\"Status code name has UNPROCESSABLE ENTITY\",  function () {\r",
+									"  pm.response.to.have.status(\"UNPROCESSABLE ENTITY\");\r",
+									"});\r",
+									"\r",
+									"// Без требований нет точных ms\r",
+									"pm.test(\"Response time is less than 100ms\", () => {\r",
+									"  pm.expect(pm.response.responseTime).to.be.below(400);\r",
+									"});\r",
+									"\r",
+									"// Тестирование headers\r",
+									"pm.test(\"Content-Type header is present\", () => {\r",
+									"  pm.response.to.have.header(\"Content-Type\");\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Content-Type header is application/json\", () => {\r",
+									"  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');\r",
+									"});\r",
+									"\r",
+									"pm.test(\"Check Cookie is not present\", () => {\r",
+									"  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;\r",
+									"});\r",
+									"\r",
+									"// pm.test(\"Check Cookie is presen\", () => {\r",
+									"//   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;\r",
+									"// });\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"// pm.test(`response ${jsonData.email} = \"Missing data for required field.\"`, function() {\r",
+									"//     pm.expect(jsonData.email[0]).to.eql(\"Missing data for required field.\")\r",
+									"// }); \r",
+									"\r",
+									"// pm.test(`response ${jsonData.password} = \"Not a valid string.\"`, function() {\r",
+									"//     pm.expect(jsonData.password[0]).to.eql(\"Missing data for required field.\")\r",
+									"// }); \r",
+									"\r",
+									"// pm.test(`response ${jsonData.username} = \"Missing data for required field.\"`, function() {\r",
+									"//     pm.expect(jsonData.username[0]).to.eql(\"Missing data for required field.\")\r",
+									"// }); \r",
+									"\r",
+									"///////////////////////////\r",
+									"pm.test(`response ${jsonData.last_name} = \"Unknown field.\"`, function() {\r",
+									"    pm.expect(jsonData.last_name[0]).to.eql(\"Unknown field.\")\r",
+									"}); \r",
+									"\r",
+									"pm.test(`response ${jsonData.middle_name} = \"Unknown field.\"`, function() {\r",
+									"    pm.expect(jsonData.middle_name[0]).to.eql(\"Unknown field.\")\r",
+									"}); \r",
+									"\r",
+									"pm.test(`response ${jsonData.first_name} = \"Unknown field.\"`, function() {\r",
+									"    pm.expect(jsonData.first_name[0]).to.eql(\"Unknown field.\")\r",
+									"}); \r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"youыrusername\",\r\n    \"email\": \"youыremail\",\r\n    \"password\": \"youыrpassword\",\r\n    \"first_name\": \"youыrfirstname\",\r\n    \"middle_name\": \"yourыmiddlename\",\r\n    \"last_name\": \"yourlaыstname\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/sign-in",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "sign-in 201 check schema old new",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"schema = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"password\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"first_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"middle_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"email\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"last_name\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"username\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"id\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"is_admin\": {\r",
+									"      \"type\": \"boolean\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"password\",\r",
+									"    \"email\",\r",
+									"    \"username\",\r",
+									"    \"id\",\r",
+									"    \"is_admin\"\r",
+									"  ]\r",
+									"}\r",
+									"schema_null = {\r",
+									"  \"type\": \"object\",\r",
+									"  \"properties\": {\r",
+									"    \"password\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"first_name\": {\r",
+									"      \"type\": \"null\"\r",
+									"    },\r",
+									"    \"middle_name\": {\r",
+									"      \"type\": \"null\"\r",
+									"    },\r",
+									"    \"email\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"last_name\": {\r",
+									"      \"type\": \"null\"\r",
+									"    },\r",
+									"    \"username\": {\r",
+									"      \"type\": \"string\"\r",
+									"    },\r",
+									"    \"id\": {\r",
+									"      \"type\": \"integer\"\r",
+									"    },\r",
+									"    \"is_admin\": {\r",
+									"      \"type\": \"boolean\"\r",
+									"    }\r",
+									"  },\r",
+									"  \"required\": [\r",
+									"    \"password\",\r",
+									"    \"email\",\r",
+									"    \"username\",\r",
+									"    \"id\",\r",
+									"    \"is_admin\"\r",
+									"  ]\r",
+									"}\r",
+									"// Parsing response\r",
+									"let jsonData = pm.response.json(); \r",
+									"\r",
+									"pm.test('Schema со всеми полями is valid', function() {\r",
+									"    var correct=tv4.validate(jsonData, schema, true, true)\r",
+									"    pm.expect(correct).to.be.true\r",
+									"});\r",
+									"pm.test('Schema_bez_обязательных полей is valid', function() {\r",
+									"    var correct=tv4.validate(jsonData, schema_null, true, true)\r",
+									"    pm.expect(correct).to.be.true\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"{{$randomCity}}\",\r\n    \"email\": \"{{$randomEmail}}\",\r\n    \"password\": \"123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://hr.recruit.liis.su/qa0/v1/api/sahokteder9@mail.ru/sign-in",
+							"protocol": "https",
+							"host": [
+								"hr",
+								"recruit",
+								"liis",
+								"su"
+							],
+							"path": [
+								"qa0",
+								"v1",
+								"api",
+								"sahokteder9@mail.ru",
+								"sign-in"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
