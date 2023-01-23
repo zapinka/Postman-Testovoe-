@@ -42,8 +42,99 @@ pm.test("Your test name", function () {
 ```js
 pm.environment.set("variable_key", "variable_value");
 ```
-___
-## 3. **The third Homework**:
+:small_orange_diamond: Set the an environment variable
+```js
+// headers
+pm.test("Content-Type header is present", () => {
+  pm.response.to.have.header("Content-Type");
+});
+
+pm.test("Content-Type header is application/json", () => {
+  pm.expect(pm.response.headers.get('Content-Type')).to.eql('application/json');
+});
+
+pm.test("Check Cookie is not present", () => {
+  pm.expect(pm.cookies.has('JSESSIONID')).to.be.false;
+});
+
+pm.test("Check Cookie is presen", () => {
+   pm.expect(pm.cookies.has('JSESSIONID')).to.be.true;
+});
+```
+
+:small_orange_diamond: Set the an environment variable
+```js
+// Есть массив
+pm.test("response have array", () => {
+  pm.expect(jsonData).to.be.an("array");
+});
+```
+:small_orange_diamond: Set the an environment variable
+```js
+
+// jsonData.not.null
+pm.test("jsonData.not.null", () => {
+    pm.expect(jsonData).to.be.not.null;
+});
+```
+:small_orange_diamond: Set the an environment variable
+```js
+const keyisInJson = ['content','id','publication_datetime','title','author']
+
+jsonData.forEach(elemnt =>
+keyisInJson.forEach(key => {
+    pm.test(`Response has ${key}`, () => {
+        pm.expect(elemnt).to.have.property(key)
+    })
+}));
+
+jsonData.forEach(elemnt => {
+    pm.test(`elemnt.content is string`, () => {
+        pm.expect(elemnt.content).to.be.a('string');
+    })
+});
+
+jsonData.forEach(elemnt => {
+    pm.test(`elemnt.id is number`, () => {
+        pm.expect(elemnt.id).to.be.a('number');
+    })
+});
+
+jsonData.forEach(elemnt => {
+    pm.test(`elemnt.publication_datetime is string`, () => {
+        pm.expect(elemnt.publication_datetime).to.be.a('string');
+    })
+});
+```
+
+:small_orange_diamond: Set the an environment variable
+```js
+onst content = pm.iterationData.get('content');
+const title = pm.iterationData.get('title'); // old
+const name = pm.iterationData.get('name'); // new
+
+function contentValidation(value) {
+    return value && value.lenght > 3 && value.lenght <= 180 && value.trim() == value
+}
+
+function titleValidation(value) {
+    return value && value.lenght > 3 && value.lenght <= 80 && value.trim() == value
+}
+
+function  validate(content,title) {
+    return contentValidation(content) && nameValidation(title)
+}
+if (validate(content,title)) {
+
+    pm.test(`ne 201 code with content == ${content} and title == ${title} `, () => {
+        pm.response.to.not.have.status(201);
+    })
+} else {
+    pm.test(`201 code with content == ${content} and title == ${title} `, () => {
+        pm.response.to.have.status(201);
+    })
+}
+```
 ### We continue to write tests in Postman. Learning Json Schema.
 *JSON Schema is a vocabulary that allows you to annotate and validate JSON documents*.
 *I used the following tool to convert Json to Json Schema*:
