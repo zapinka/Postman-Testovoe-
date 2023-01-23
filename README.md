@@ -9,6 +9,9 @@
     pm.test("Status code is 200",           function () {
         pm.response.to.have.status(200);
     });
+    pm.test("Status code name has OK",  function () {
+     pm.response.to.have.status("OK");
+});
 ```
 :small_orange_diamond: Test if the response body contains a string:
 ```pm.test("Body matches string", function () {
