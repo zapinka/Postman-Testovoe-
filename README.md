@@ -19,12 +19,10 @@
 });
 ```
 :small_orange_diamond:  Parsing response body data.
-
-    To parse JSON data, use the following syntax:
 ```js 
 responseJson = pm.response.json();
 ```
-:small_orange_diamond: Parsing request 
+:small_orange_diamond: Parsing request form data 
 ```js
 var req = request.data
 ```
@@ -32,19 +30,18 @@ var req = request.data
 ```js
 var req = pm.request. url.query.toObject();
 ```
-:small_orange_diamond: Testing response body
+:small_orange_diamond: Testing response body eql req
 ```js
 pm.test("Your test name", function () {
-    pm.expect(jsonData.value).to.eql(100);
+    pm.expect(jsonData.value).to.eql(reqData.value);
 });
 ```
 :small_orange_diamond: Set the an environment variable
 ```js
 pm.environment.set("variable_key", "variable_value");
 ```
-:small_orange_diamond: Set the an environment variable
+:small_orange_diamond: headers
 ```js
-// headers
 pm.test("Content-Type header is present", () => {
   pm.response.to.have.header("Content-Type");
 });
@@ -62,22 +59,18 @@ pm.test("Check Cookie is presen", () => {
 });
 ```
 
-:small_orange_diamond: Set the an environment variable
+:small_orange_diamond: array
 ```js
-// Есть массив
 pm.test("response have array", () => {
   pm.expect(jsonData).to.be.an("array");
 });
-```
-:small_orange_diamond: Set the an environment variable
-```js
 
 // jsonData.not.null
 pm.test("jsonData.not.null", () => {
     pm.expect(jsonData).to.be.not.null;
 });
 ```
-:small_orange_diamond: Set the an environment variable
+:small_orange_diamond: check value jsonData
 ```js
 const keyisInJson = ['content','id','publication_datetime','title','author']
 
@@ -107,9 +100,9 @@ jsonData.forEach(elemnt => {
 });
 ```
 
-:small_orange_diamond: Set the an environment variable
+:small_orange_diamond: check value jsonData
 ```js
-onst content = pm.iterationData.get('content');
+const content = pm.iterationData.get('content');
 const title = pm.iterationData.get('title'); // old
 const name = pm.iterationData.get('name'); // new
 
