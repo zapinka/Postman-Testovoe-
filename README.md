@@ -128,6 +128,17 @@ if (validate(content,title)) {
     })
 }
 ```
+:small_orange_diamond: Math.floor
+```js
+var curr = jsonResponse[Math.floor(Math.random() * respLength)];
+console.log(curr);
+```
+:small_orange_diamond: for
+```js
+  for (var i = 0; i < Object.keys(answer.person).length; i++)  {
+ console.log(Object.keys(answer.person)[i])
+   }
+   ```
 ### We continue to write tests in Postman. Learning Json Schema.
 *JSON Schema is a vocabulary that allows you to annotate and validate JSON documents*.
 *I used the following tool to convert Json to Json Schema*:
